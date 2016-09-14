@@ -5,6 +5,9 @@ public class Player {
 
 	private String name;
 	private int roll;
+	private int territories;
+	private int continents;
+	private int armies;
 	static int r1;
 	static int r2;
 	static int r3;
@@ -13,11 +16,14 @@ public class Player {
 	static String name2;
 	
 	
-	public Player(String n, int r){
+	public Player(String n, int r, int t, int c, int a){
 		name = n;
 		roll = r;
+		territories = t;
+		continents = c;
+		armies = a;
 	}
-
+		
 	public String getName() {
 		return name;
 	}
@@ -33,7 +39,31 @@ public class Player {
 	public void setRoll(int roll) {
 		this.roll = roll;
 	}
-		
+
+	public int getTerritories() {
+		return territories;
+	}
+
+	public void setTerritories(int territories) {
+		this.territories = territories;
+	}
+
+	public int getContinents() {
+		return continents;
+	}
+
+	public void setContinents(int continents) {
+		this.continents = continents;
+	}
+
+	public int getArmies() {
+		return armies;
+	}
+
+	public void setArmies(int armies) {
+		this.armies = armies;
+	}
+
 	public static void namePlayers(){
 		System.out.println("Enter the name of one player.");
 		Scanner aa = new Scanner(System.in);
@@ -68,50 +98,50 @@ public class Player {
 		System.out.println(name2 + ", you rolled a " + r2 + ".");
 		System.out.println("The computer rolled a " + r3 + ".");
 		if((r1 > r2) && (r1 > r2)){
-			Player player1 = new Player(name1, r1);
+			Player player1 = new Player(name1, r1, 0, 0, 0);
 			players.add(player1);
 			if(r2 > r3){
-				Player player2 = new Player(name2, r2);
+				Player player2 = new Player(name2, r2, 0, 0, 0);
 				players.add(player2);
-				Player player3 = new Player(name3, r3);
+				Player player3 = new Player(name3, r3, 0, 0, 0);
 				players.add(player3);
 			}
 			else{
-				Player player2 = new Player(name3, r3);
+				Player player2 = new Player(name3, r3, 0, 0, 0);
 				players.add(player2);
-				Player player3 = new Player(name2, r2);
+				Player player3 = new Player(name2, r2, 0, 0, 0);
 				players.add(player3);
 			}
 		}
 		else if((r2 > r1) && (r2 > r3)){
-			Player player1 = new Player(name2, r2);
+			Player player1 = new Player(name2, r2, 0, 0, 0);
 			players.add(player1);
 			if((r1 > r3)){
-				Player player2 = new Player(name1, r1);
+				Player player2 = new Player(name1, r1, 0, 0, 0);
 				players.add(player2);
-				Player player3 = new Player(name3, r3);
+				Player player3 = new Player(name3, r3, 0, 0, 0);
 				players.add(player3);
 			}
 			else{
-				Player player2 = new Player(name3, r3);
+				Player player2 = new Player(name3, r3, 0, 0, 0);
 				players.add(player2);
-				Player player3 = new Player(name1, r1);
+				Player player3 = new Player(name1, r1, 0, 0, 0);
 				players.add(player3);
 			}
 		}
 		else if((r3 > r2) && (r3 > r1)){
-			Player player1 = new Player(name3, r3);
+			Player player1 = new Player(name3, r3, 0, 0, 0);
 			players.add(player1);
 			if(r2 > r1){
-				Player player2 = new Player(name2, r2);
+				Player player2 = new Player(name2, r2, 0, 0, 0);
 				players.add(player2);
-				Player player3 = new Player(name1, r1);
+				Player player3 = new Player(name1, r1, 0, 0, 0);
 				players.add(player3);
 			}
 			else{
-				Player player2 = new Player(name1, r1);
+				Player player2 = new Player(name1, r1, 0, 0, 0);
 				players.add(player2);
-				Player player3 = new Player(name2, r2);
+				Player player3 = new Player(name2, r2, 0, 0, 0);
 				players.add(player3);
 			}
 		}
