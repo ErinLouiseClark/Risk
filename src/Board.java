@@ -23,7 +23,7 @@ public class Board {
 
 	        int boardCounter = 1;
 	        for (String[] row : board) {
-	            for (String elem : row) {
+	            for (String s : row) {
 	                if (boardCounter < 3) {
 	                    System.out.print(" |  " + name1 + "  | ");
 	                }    else if (boardCounter ==3) {
