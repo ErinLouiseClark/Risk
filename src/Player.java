@@ -10,11 +10,7 @@ public class Player {
 	private int armies;
 	static int r1;
 	static int r2;
-	static int r3;
-	static String name3 = "the computer";
-	static String name1;
-	static String name2;
-	
+	static String name2 = "the computer";	
 	
 	public Player(String n, int r, int t, int c, int a){
 		name = n;
@@ -65,13 +61,9 @@ public class Player {
 	}
 
 	public static void namePlayers(){
-		System.out.println("Enter the name of one player.");
+		System.out.println("Enter your name.");
 		Scanner aa = new Scanner(System.in);
 		name1 = aa.nextLine();
-		
-		System.out.println("Enter the name of the other player.");
-		Scanner bb = new Scanner(System.in);
-		name2 = bb.nextLine();
 		startRoll();
 	}
 	
@@ -80,102 +72,24 @@ public class Player {
 		Scanner aa = new Scanner(System.in);
 		String blank = aa.nextLine();
 		r1 = (int)(Math.random()*6+1);
-	
-		System.out.println(name2 + ", press enter to roll the die.");
-		Scanner bb = new Scanner(System.in);
-		String blank2 = aa.nextLine();
-		r2 = (int)(Math.random()*6+1);
 
 		Scanner cc = new Scanner(System.in);
-		r3 = (int)(Math.random()*6+1);
-		
-		checkOrder();
-	}
-	
-	public static void orderPlayers(){
+		r2 = (int)(Math.random()*6+1);
 		ArrayList<Player> players = new ArrayList<Player>();
-		System.out.println(name1 + ", you rolled a " + r1 + ".");
-		System.out.println(name2 + ", you rolled a " + r2 + ".");
-		System.out.println("The computer rolled a " + r3 + ".");
-		if((r1 > r2) && (r1 > r2)){
+		if(r1 > r2){
 			Player player1 = new Player(name1, r1, 0, 0, 0);
-			players.add(player1);
-			if(r2 > r3){
-				Player player2 = new Player(name2, r2, 0, 0, 0);
-				players.add(player2);
-				Player player3 = new Player(name3, r3, 0, 0, 0);
-				players.add(player3);
-			}
-			else{
-				Player player2 = new Player(name3, r3, 0, 0, 0);
-				players.add(player2);
-				Player player3 = new Player(name2, r2, 0, 0, 0);
-				players.add(player3);
-			}
-		}
-		else if((r2 > r1) && (r2 > r3)){
-			Player player1 = new Player(name2, r2, 0, 0, 0);
-			players.add(player1);
-			if((r1 > r3)){
-				Player player2 = new Player(name1, r1, 0, 0, 0);
-				players.add(player2);
-				Player player3 = new Player(name3, r3, 0, 0, 0);
-				players.add(player3);
-			}
-			else{
-				Player player2 = new Player(name3, r3, 0, 0, 0);
-				players.add(player2);
-				Player player3 = new Player(name1, r1, 0, 0, 0);
-				players.add(player3);
-			}
-		}
-		else if((r3 > r2) && (r3 > r1)){
-			Player player1 = new Player(name3, r3, 0, 0, 0);
-			players.add(player1);
-			if(r2 > r1){
-				Player player2 = new Player(name2, r2, 0, 0, 0);
-				players.add(player2);
-				Player player3 = new Player(name1, r1, 0, 0, 0);
-				players.add(player3);
-			}
-			else{
-				Player player2 = new Player(name1, r1, 0, 0, 0);
-				players.add(player2);
-				Player player3 = new Player(name2, r2, 0, 0, 0);
-				players.add(player3);
-			}
-		}
-		System.out.println();
-		System.out.println("Player One is " + players.get(0).getName() + ".");
-		System.out.println("Player Two is " + players.get(1).getName() + ".");
-		System.out.println("Player Three is " + players.get(2).getName() + ".");
-		
-	}
-	
-	public static void checkOrder(){
-		if(r1 == r2){
-			r1 = (int)(Math.random()*6+1);
-			r2 = (int)(Math.random()*6+1);
-			checkOrder();
-		}
-		else if(r1 == r3){
-			r1 = (int)(Math.random()*6+1);
-			r3 = (int)(Math.random()*6+1);
-			checkOrder();
-
-		}
-		else if(r2 == r3){
-			r2 = (int)(Math.random()*6+1);
-			r3 = (int)(Math.random()*6+1);
-			checkOrder();
+			Player player2 = new Player(name2, r2, 0, 0, 0);
+			System.out.println(name1 + ", you are Player One.");
+			System.out.println("The computer is Player Two");
 		}
 		else{
-			orderPlayers();
+			Player player1 = new Player(name2, r2, 0, 0, 0);
+			Player player2 = new Player(name1, r1, 0, 0, 0);
+			System.out.println("The computer is Player One.");
+			System.out.println(name1 + ", you are Player Two");
 		}
-	}
 		
+	}
 }
 	
 	
-	
-
