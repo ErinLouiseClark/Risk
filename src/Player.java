@@ -10,7 +10,8 @@ public class Player {
 	private int armies;
 	static int r1;
 	static int r2;
-	static String name2 = "the computer";	
+	static String name1;
+	static String name2 = "Computer";	
 	
 	public Player(String n, int r, int t, int c, int a){
 		name = n;
@@ -72,21 +73,26 @@ public class Player {
 		Scanner aa = new Scanner(System.in);
 		String blank = aa.nextLine();
 		r1 = (int)(Math.random()*6+1);
+		System.out.println("You rolled a " + r1 + ".");
 
 		Scanner cc = new Scanner(System.in);
 		r2 = (int)(Math.random()*6+1);
+		System.out.println("The computer rolled a " + r2 + ".");
+		System.out.println();
 		ArrayList<Player> players = new ArrayList<Player>();
 		if(r1 > r2){
 			Player player1 = new Player(name1, r1, 0, 0, 0);
 			Player player2 = new Player(name2, r2, 0, 0, 0);
 			System.out.println(name1 + ", you are Player One.");
-			System.out.println("The computer is Player Two");
+			System.out.println("The computer is Player Two.");
+			System.out.println();
 		}
 		else{
 			Player player1 = new Player(name2, r2, 0, 0, 0);
 			Player player2 = new Player(name1, r1, 0, 0, 0);
 			System.out.println("The computer is Player One.");
 			System.out.println(name1 + ", you are Player Two");
+			System.out.println();
 		}
 		
 	}
