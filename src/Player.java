@@ -12,6 +12,7 @@ public class Player {
 	static int r2;
 	static String name1;
 	static String name2 = "Computer";	
+	static ArrayList<Player> players = new ArrayList<Player>();
 	
 	public Player(String n, int r, int t, int c, int a){
 		name = n;
@@ -79,22 +80,25 @@ public class Player {
 		r2 = (int)(Math.random()*6+1);
 		System.out.println("The computer rolled a " + r2 + ".");
 		System.out.println();
-		ArrayList<Player> players = new ArrayList<Player>();
+		
 		if(r1 > r2){
 			Player player1 = new Player(name1, r1, 0, 0, 0);
+			players.add(player1);
 			Player player2 = new Player(name2, r2, 0, 0, 0);
+			players.add(player2);
 			System.out.println(name1 + ", you are Player One.");
 			System.out.println("The computer is Player Two.");
 			System.out.println();
 		}
 		else{
-			Player player1 = new Player(name2, r2, 0, 0, 0);
-			Player player2 = new Player(name1, r1, 0, 0, 0);
+			Player player1 = new Player(name1, r1, 0, 0, 0);
+			Player player2 = new Player(name2, r2, 0, 0, 0);
+			players.add(player2);
+			players.add(player1);
 			System.out.println("The computer is Player One.");
-			System.out.println(name1 + ", you are Player Two");
+			System.out.println(name1 + ", you are Player Two.");
 			System.out.println();
 		}
-		
 	}
 }
 	
