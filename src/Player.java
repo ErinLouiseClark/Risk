@@ -82,17 +82,17 @@ public class Player {
 		System.out.println();
 		
 		if(r1 > r2){
-			Player player1 = new Player(name1, r1, 0, 0, 0);
+			Player player1 = new Player(name1, r1, 12, 2, 30);
 			players.add(player1);
-			Player player2 = new Player(name2, r2, 0, 0, 0);
+			Player player2 = new Player(name2, r2, 12, 2, 30);
 			players.add(player2);
 			System.out.println(name1 + ", you are Player One.");
 			System.out.println("The computer is Player Two.");
 			System.out.println();
 		}
 		else{
-			Player player1 = new Player(name1, r1, 0, 0, 0);
-			Player player2 = new Player(name2, r2, 0, 0, 0);
+			Player player1 = new Player(name1, r1, 12, 2, 30);
+			Player player2 = new Player(name2, r2, 12, 2, 30);
 			players.add(player2);
 			players.add(player1);
 			System.out.println("The computer is Player One.");

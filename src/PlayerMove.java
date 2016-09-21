@@ -14,6 +14,9 @@ public class PlayerMove {
 			System.out.println("Invalid Move.");
 			playerMove();
 		}
+		switch(row){
+			
+		}
 		
 		
 	}
