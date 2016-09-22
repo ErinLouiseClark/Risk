@@ -1,12 +1,14 @@
 import java.util.ArrayList;
 public class Board {
 
-	   	static String[][] board = new String[5][6];
-	    static int[][] board2 = new int[5][6];
+	   	//static String[][] board = new String[5][6];
+	   //static int[][] board2 = new int[5][6];
 	    
 	    static ArrayList<String>letters = new ArrayList<String>();
        
         static ArrayList<Integer>numbers = new ArrayList<Integer>();
+        
+        static ArrayList<Space>spaces = new ArrayList<Space>();
         
 	    public static void showBoard(){
 		     int num1 = 0;
@@ -25,7 +27,7 @@ public class Board {
 		     numbers.add(6);
 	        
 	        
-	        for(int i = 0; i < 3; i++){
+	        /*for(int i = 0; i < 3; i++){
 	        	for(int j = 0; j < 6; j++){
 	        		board[i][j] = Player.players.get(0).getName().substring(0,1).toUpperCase();
 	        	}
@@ -71,8 +73,14 @@ public class Board {
 	        	for(int j = 0; j < 6; j++){
 	        		board2[i][j] = 0;
 	        	}
-	        }
+	      	}*/
 	        
 	    }
-
+	    
+	    public static void makeSpaces(){
+	    	for(int i = 0; i < 30; i++){
+	    		
+	    	}
+	    }
+	    
 }

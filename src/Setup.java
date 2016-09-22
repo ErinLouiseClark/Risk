@@ -26,7 +26,7 @@ public class Setup {
 			}
 		}
 		else{
-			
+			System.out.println("You control the bottom 12 territories.");
 		}
 	}
 }

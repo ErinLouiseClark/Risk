@@ -3,8 +3,9 @@ public class RiskRunner {
 
 	public static void main(String[] args) {
 		//introduction();
-		Player.namePlayers();
-		Board.showBoard();
+		//Player.namePlayers();
+		//Board.showBoard();
+		Space.makeSpaces();
 	}
 	
 	public static void introduction(){
