@@ -13,7 +13,6 @@ public class Player {
 	static String name1;
 	static String name2 = "Computer";	
 	static ArrayList<Player> players = new ArrayList<Player>();
-	//your ints are easy to follow 
 	
 	public Player(String n, int r, int t, int c, int a){
 		name = n;

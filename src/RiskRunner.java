@@ -3,9 +3,10 @@ public class RiskRunner {
 
 	public static void main(String[] args) {
 		//introduction();
-		//Player.namePlayers();
-		//Board.showBoard();
-		Space.makeSpaces();
+		Player.namePlayers();
+		Territory.makeSpaces();
+		Setup.setupBoard();
+		Board.showBoard();
 	}
 	
 	public static void introduction(){
