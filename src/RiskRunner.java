@@ -5,7 +5,7 @@ public class RiskRunner {
 		//introduction();
 		Player.namePlayers();
 		Territory.makeSpaces();
-		Setup.setupBoard();
+		Setup.setupIntro();
 		Board.showBoard();
 	}
 	
