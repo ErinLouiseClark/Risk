@@ -2,6 +2,10 @@
 public class RiskRunner {
 
 	public static void main(String[] args) {
+		//Setup is complete
+		//Battle, player, and computer moves needed - fix player move
+		//Add armies after each round based on territories owned
+		
 		//introduction();
 		Player.namePlayers();
 		Territory.makeSpaces();

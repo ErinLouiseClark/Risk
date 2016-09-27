@@ -7,8 +7,8 @@ public class Territory {
 	private int armiesInTerritory;
 	private int numOfSpace;
 	static public int counter = 1;
-	static ArrayList<String>test = new ArrayList<String>();
-	static ArrayList<Integer>test2 = new ArrayList<Integer>();
+	static ArrayList<String>letters = new ArrayList<String>();
+	static ArrayList<Integer>numbers = new ArrayList<Integer>();
 	static ArrayList<Territory>spaces = new ArrayList<Territory>();
 	static String name;
 
@@ -52,24 +52,24 @@ public class Territory {
 	}
 
 	public static void makeSpaces(){
-		test.add("A");
-		test.add("B");
-		test.add("C");
-		test.add("D");
-		test.add("E");
+		letters.add("A");
+		letters.add("B");
+		letters.add("C");
+		letters.add("D");
+		letters.add("E");
 		
-		test2.add(1);
-		test2.add(2);
-		test2.add(3);
-		test2.add(4);
-		test2.add(5);
-		test2.add(6);
+		numbers.add(1);
+		numbers.add(2);
+		numbers.add(3);
+		numbers.add(4);
+		numbers.add(5);
+		numbers.add(6);
 		
 		for(int i = 0; i < 5; i++){
 			for(int j = 0; j < 6; j++){
 				
-			name = test.get(i) + test2.get(j);
-			Territory space = new Territory(name, "", 0, counter);
+			name = letters.get(i) + numbers.get(j);
+			Territory space = new Territory(name, " ", 0, counter);
 			spaces.add(space);
 			counter++;
 			}

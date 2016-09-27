@@ -90,11 +90,15 @@ public class Player {
 			System.out.println("The computer is Player Two.");
 			System.out.println();
 		}
+		else if(r1 == r2){
+			System.out.println("There was a tie - roll again!");
+			startRoll();
+		}
 		else{
-			Player player1 = new Player(name1, r1, 12, 2, 30);
-			Player player2 = new Player(name2, r2, 12, 2, 30);
-			players.add(player2);
+			Player player1 = new Player(name2, r2, 12, 2, 30);
+			Player player2 = new Player(name1, r1, 12, 2, 30);
 			players.add(player1);
+			players.add(player2);
 			System.out.println("The computer is Player One.");
 			System.out.println(name1 + ", you are Player Two.");
 			System.out.println();

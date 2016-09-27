@@ -7,15 +7,29 @@ public class PlayerMove {
 		Scanner userInput = new Scanner(System.in);
 		String move = userInput.nextLine();
 		
-		int row = Integer.parseInt(move.substring(0,1));
-		String column = move.substring(1,2);
+		int column = Integer.parseInt(move.substring(1,2));
+		String row = move.substring(0,1);
 		
 		if(move.length()>2 || move.length()<2){
 			System.out.println("Invalid Move.");
 			playerMove();
 		}
-		switch(row){
-			
+		
+		for(String s : Territory.letters){
+			if(row.equalsIgnoreCase(s)){
+				//Here
+			}
+		}
+		
+		for(int  i : Territory.numbers){
+			if(((column == i + 1) || (column == i - 1) || (column == i)) && (column > 0 && column < 7)){
+				//Here
+			}
+		}
+		
+		for(int i = 0; i < 30; i ++){
+			if(move.equalsIgnoreCase(Territory.spaces.get(i).getNameOfSpace()));
+			break;
 		}
 		
 		
