@@ -6,112 +6,139 @@ public class PlayerMove {
 	String startingSpace;
 	String letterOption1;
 	String letterOption2;
+	String letterOption3;
 	int numberOption1;
 	int numberOption2;
+	int column1 = 0;
+	String row1;
+	int column2;
+	String row2;
+	int startIndex;
 	
-	public void playerMove(){
-		//order of this class may need to be changed to be more logical
-		System.out.println("Type in your move and press enter. Ex: A1");
-		Scanner userInput = new Scanner(System.in);
-		move = userInput.nextLine();
-		for(int i = 0; i < 30; i++){
-			if(Territory.spaces.get(i).getNameOfSpace().equalsIgnoreCase(move)){
-				moveIndex = i;
-			}
-		}
-		System.out.println("From which space of yours would you like to attack from?");
+	public void startMove(){
+		System.out.println("From which of your territories would you like to start your attack? Ex: A1");
 		Scanner userInput2 = new Scanner(System.in);
-		startingSpace = userInput2.nextLine();
-		//make sure starting space is a valid choice
+		startingSpace = userInput2.nextLine().toUpperCase();
+		column1 = Integer.parseInt(move.substring(1,2));
+		row1 = move.substring(0,1);
+		if(startingSpace.length() < 2 || startingSpace.length() > 2){
+			System.out.println("Not a valid choice.");
+			startMove();
+		}
 		for(int i = 0; i < 30; i++){
-			if(Territory.spaces.get(i).getNameOfSpace().equalsIgnoreCase(startingSpace)){
-				System.out.println("There are " + Territory.spaces.get(i).getArmiesInTerritory() + " armies your starting spot.");
-				System.out.println("There are " + Territory.spaces.get(moveIndex).getArmiesInTerritory() + " armies in " + move.toUpperCase() + ".");
-				System.out.println("Would you still like to continue with this move? (1) Yes or (2) No. Enter 1 or 2.");
-				Scanner userInput3 = new Scanner(System.in);
-				int continueMove = userInput3.nextInt();
-				if(continueMove == 1){
-					break;
-				}
-				else if(continueMove == 2){
-					System.out.println("Ok, let's start again.");
-					playerMove();
-				}
-				else{
-					System.out.println("That is not a valid answer. Let's start again.");
-					playerMove();
+			if(Territory.spaces.get(i).getNameOfSpace().equals(startingSpace)){
+				if(Territory.spaces.get(i).getPlayerInControl().equals(Player.name1)){
+					startIndex = i;
+					selectMove();
 				}
 			}
 		}
-		
-		for(int i = 0; i < 30; i ++){
-			if(move.equalsIgnoreCase(Territory.spaces.get(i).getNameOfSpace())){
-				if(Territory.spaces.get(i).getPlayerInControl().equalsIgnoreCase(Player.name1.substring(0,1))){
-					System.out.println("You already own that spot!");
-					playerMove();
-				}
-				else if(Territory.spaces.get(i).getPlayerInControl().equals(" ")){
-					Territory.spaces.get(i).setPlayerInControl(Player.name1.substring(0,1));
-					System.out.println("You know have control of " + move.toUpperCase() + "!");
-				}
-				else{
-					System.out.println("The " + Player.name2 + " owns this spot!");
-					System.out.println("Would you like to (1) battle or (2) pick another spot? Enter 1 or 2.");
-					Scanner userInput1 = new Scanner(System.in);
-					int choice = userInput1.nextInt();
-					if(choice == 1){
-						BattleMove.battleMove();
-					}
-					else if(choice == 2){
-						playerMove();
-					}
-					else{
-						System.out.println("That is not a valid choice! Try again.");
-						playerMove();
-					}
-				}
-			}
-		}		
+		System.out.println("Not a valid choice.");
+		startMove();
 	}
 	
-	public void checkIfValid(){
-		int column = Integer.parseInt(move.substring(1,2));
-		String row = move.substring(0,1);
-		
-		if(move.length()>2 || move.length()<2){
-			System.out.println("Invalid Move.");
-			playerMove();
+	public void selectMove(){
+		System.out.println("What territory would you like to invade? Ex: A1");
+		Scanner userInput = new Scanner(System.in);
+		move = userInput.nextLine();
+		column2 = Integer.parseInt(move.substring(1,2));
+		row2 = move.substring(0,1).toUpperCase();
+		if(move.length() < 2 || move.length() > 2){
+			System.out.println("Not a valid move.");
+			selectMove();
 		}
 		
+		checkIfValidRow();
+	}
+	
+	public void checkIfValidRow(){
+		
 		for(int i = 0; i < Territory.letters.size(); i++){
-			if(row.equalsIgnoreCase(Territory.letters.get(i))){
+			if(row2.equalsIgnoreCase(Territory.letters.get(i))){
+				letterOption3 = Territory.letters.get(i);
 				if(i == 0){
-					letterOption1 = letterOption1 = Territory.letters.get(i+1);
+					letterOption1 = Territory.letters.get(i+1);
+					checkIfValidColumn();
 				}
-				else if(i == 7){
+				else if(i == 5){
 					letterOption1 = Territory.letters.get(i-1);
+					checkIfValidColumn();
 				}
 				else{
 					letterOption1 = Territory.letters.get(i+1);
 					letterOption2 = Territory.letters.get(i-1);
+					checkIfValidColumn();
 				}
 			}
 		}
+		System.out.println("Not a valid move");
+		selectMove();
 		
-		for(int  i : Territory.numbers){
-			if((column == i) && (column > 0 && column < 7)){
-				if(i == 0){
-					numberOption1 = Territory.numbers.get(i+1);
+	}
+	
+	public void checkIfValidColumn(){
+
+		if((column2 > 0 && column2 < 7)){
+			checkIfValidMove();
+		}
+		
+	}
+	
+	public void checkIfValidMove(){
+		if((Math.abs(column2-column1) == 1 || Math.abs(column2-column1) == 0) || ((row2.equals(letterOption1))||(row2.equals(letterOption2)) || (row2.equals(letterOption3)))){
+			enterTerritory();
+		}
+		else{
+			System.out.println("Not a valid move");
+			selectMove();
+		}
+	}	
+	
+	public void	enterTerritory(){
+		for(int i = 0; i < 30; i++){
+			if(Territory.spaces.get(i).getNameOfSpace().equalsIgnoreCase(move)){
+				moveIndex = i;
+				if(Territory.spaces.get(i).getPlayerInControl().equals(Player.name2)){
+					System.out.println("Oh no! The computer has control of this territory!");
+					System.out.println("There are " + Territory.spaces.get(startIndex).getArmiesInTerritory() + " armies your starting spot.");
+					System.out.println("There are " + Territory.spaces.get(moveIndex).getArmiesInTerritory() + " armies in " + move.toUpperCase() + ".");
+					System.out.println("Would you like to (1) battle or (2) choose a new space? Enter 1 or 2");
+					Scanner userInput3 = new Scanner(System.in);
+					int continueMove = userInput3.nextInt();
+					if(continueMove == 1){
+						BattleMove.battleMove();
+					}
+					else if(continueMove == 2){
+						System.out.println("Ok, let's start again.");
+						startMove();
+					}
+					else{
+						System.out.println("That is not a valid answer. Let's start again.");
+						startMove();
+					}
 				}
-				else if(i == 7){
-					numberOption1 = Territory.numbers.get(i-1);
+				else if(Territory.spaces.get(i).getPlayerInControl().equals(Player.name1)){
+					System.out.println("You already have control of this territory! Let's start again.");
+					startMove();
 				}
 				else{
-					numberOption1 = Territory.numbers.get(i+1);
-					numberOption2 = Territory.numbers.get(i-1);
+					Territory.spaces.get(i).setPlayerInControl(Player.name1);
+					System.out.println("You now have control of " + Territory.spaces.get(i).getNameOfSpace() + ".");
+					System.out.println("Your starting territory had " + Territory.spaces.get(startIndex).getArmiesInTerritory() + " armies.");
+					System.out.println("How many armies would you like to move from your starting territory into your new territory? You must place at least one army.");
+					Scanner userInput3 = new Scanner(System.in);
+					int movedArmies = userInput3.nextInt();
+					if(movedArmies > 1 && movedArmies < Territory.spaces.get(startIndex).getArmiesInTerritory()){
+						Territory.spaces.get(startIndex).setArmiesInTerritory(Territory.spaces.get(startIndex).getArmiesInTerritory()-movedArmies);
+						Territory.spaces.get(moveIndex).setArmiesInTerritory(movedArmies);
+					}
+					else{
+						System.out.println("Not a valid choice.");
+						
+					}
 				}
 			}
 		}
-		
+
 	}
 }
