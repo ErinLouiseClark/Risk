@@ -14,8 +14,59 @@ public class PlayerMove {
 	int column2;
 	String row2;
 	int startIndex;
+	boolean firstMove = true;
+	
+	public void determineArmies(){
+		int armies = 0;
+		if(Player.players.get(0).getName().equals(Player.name1)){
+			for(int i = 1; i < 5; i++){
+				if(Player.players.get(0).getContinents() == i){
+					System.out.println("You receive " + (i+3) + " armies this round because you own " + i + " continent(s).");
+					Player.players.get(0).setArmies(i);
+					armies = i;
+					chooseToAdd(armies);
+				}
+			}
+			System.out.println("You receive 3 armies this round.");
+			Player.players.get(0).setArmies(3);
+			armies = 3;
+			chooseToAdd(armies);
+		}
+		else{
+			for(int i = 0; i < 5; i++){
+				if(Player.players.get(1).getContinents() == i){
+					System.out.println("You receive " + (i+3) + " armies this round because you own " + i + " continent(s).");
+					Player.players.get(1).setArmies(i);
+					armies = i;
+					chooseToAdd(armies);
+				}
+			}
+			System.out.println("You receive 3 armies this round.");
+			Player.players.get(1).setArmies(3);
+			armies = 3;
+			chooseToAdd(armies);
+		}
+	}
+	
+	public void chooseToAdd(int armies){
+		System.out.println("Which of your territories would you like to add your armies to?");
+		Scanner userInput = new Scanner(System.in);
+		String addition = userInput.nextLine();
+		for(int i = 0; i < 30; i++){
+			if(Territory.spaces.get(i).getNameOfSpace().equalsIgnoreCase(addition)){
+				if(Territory.spaces.get(i).getPlayerInControl().equals(Player.name1)){
+					Territory.spaces.get(i).setArmiesInTerritory(Territory.spaces.get(i).getArmiesInTerritory()+armies);
+					startMove();
+				}
+			}
+		}
+		System.out.println("Not a valid choice.");
+		chooseToAdd(armies);
+	}
+	
 	
 	public void startMove(){
+		System.out.println("Your move!");
 		System.out.println("From which of your territories would you like to start your attack? Ex: A1");
 		Scanner userInput2 = new Scanner(System.in);
 		startingSpace = userInput2.nextLine().toUpperCase();
@@ -123,6 +174,27 @@ public class PlayerMove {
 				}
 				else{
 					Territory.spaces.get(i).setPlayerInControl(Player.name1);
+					if(Player.players.get(0).getName().equals(Player.name1)){
+						Player.players.get(0).setTerritories(Player.players.get(0).getTerritories()+1);
+						Player.players.get(1).setTerritories(Player.players.get(1).getTerritories()-1);
+						if(Player.players.get(0).getTerritories() == 30){
+							System.out.println("You win!");
+							System.exit(0);
+						}
+						if(Player.players.get(0).getTerritories() == 5 ||Player.players.get(0).getTerritories() == 10 || Player.players.get(0).getTerritories() == 15 || Player.players.get(0).getTerritories() == 20 || Player.players.get(0).getTerritories() == 25){
+							Player.players.get(0).setContinents(Player.players.get(0).getContinents()+1);
+						}
+					}
+					else{
+						Player.players.get(1).setTerritories(Player.players.get(1).getTerritories()+1);
+						if(Player.players.get(1).getTerritories() == 30){
+							System.out.println("You win!");
+							System.exit(0);
+						}
+						if(Player.players.get(1).getTerritories() == 5 || Player.players.get(1).getTerritories() == 10 || Player.players.get(1).getTerritories() == 15 || Player.players.get(1).getTerritories() == 20 || Player.players.get(1).getTerritories() == 25){
+							Player.players.get(1).setContinents(Player.players.get(1).getContinents()+1);
+						}
+					}
 					System.out.println("You now have control of " + Territory.spaces.get(i).getNameOfSpace() + ".");
 					System.out.println("Your starting territory had " + Territory.spaces.get(startIndex).getArmiesInTerritory() + " armies.");
 					System.out.println("How many armies would you like to move from your starting territory into your new territory? You must place at least one army.");
