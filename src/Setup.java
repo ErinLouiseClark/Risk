@@ -61,18 +61,18 @@ public class Setup {
 				else{
 					armies2 -= choice;
 					Territory.spaces.get(counter2).setArmiesInTerritory(choice);
-					Territory.spaces.get(counter2).setPlayerInControl(Player.players.get(0).getName());
+					Territory.spaces.get(counter2).setPlayerInControl(Player.players.get(1).getName());
 					counter2++;
 				}
 			}
 			
 			Territory.spaces.get(counter2).setArmiesInTerritory(armies2);
-			Territory.spaces.get(counter2).setPlayerInControl(Player.players.get(0).getName());
+			Territory.spaces.get(counter2).setPlayerInControl(Player.players.get(1).getName());
 			System.out.println("Your remaining " + armies2 + " armies are located in " + Territory.spaces.get(counter2).getNameOfSpace() + ".");
 			System.out.println();
 			
 			for(int i = 0; i < 12; i++){
-				Territory.spaces.get(i).setPlayerInControl(Player.players.get(1).getName());
+				Territory.spaces.get(i).setPlayerInControl(Player.players.get(0).getName());
 				Territory.spaces.get(i).setArmiesInTerritory(3);
 			}
 		}

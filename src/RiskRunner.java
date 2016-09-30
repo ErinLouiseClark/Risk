@@ -11,6 +11,12 @@ public class RiskRunner {
 		Territory.makeSpaces();
 		Setup.setupIntro();
 		Board.showBoard();
+		if(Player.players.get(0).getName().equals(Player.name1)){
+			PlayerMove.startMove();
+		}
+		else{
+			ComputerMove.computerMove();
+		}
 	}
 	
 	public static void introduction(){

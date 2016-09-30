@@ -1,20 +1,20 @@
 import java.util.Scanner;
 public class PlayerMove {
 	
-	String move;
-	int moveIndex;
-	String startingSpace;
-	String letterOption1;
-	String letterOption2;
-	String letterOption3;
-	int numberOption1;
-	int numberOption2;
-	int column1 = 0;
-	String row1;
-	int column2;
-	String row2;
-	int startIndex;
-	boolean firstMove = true;
+	static String move;
+	static int moveIndex;
+	static String startingSpace;
+	static String letterOption1;
+	static String letterOption2;
+	static String letterOption3;
+	static int numberOption1;
+	static int numberOption2;
+	static int column1 = 0;
+	static String row1;
+	static int column2;
+	static String row2;
+	static int startIndex;
+	//boolean firstMove = true;
 	
 	public void determineArmies(){
 		int armies = 0;
@@ -65,7 +65,7 @@ public class PlayerMove {
 	}
 	
 	
-	public void startMove(){
+	public static void startMove(){
 		System.out.println("Your move!");
 		System.out.println("From which of your territories would you like to start your attack? Ex: A1");
 		Scanner userInput2 = new Scanner(System.in);
@@ -88,7 +88,7 @@ public class PlayerMove {
 		startMove();
 	}
 	
-	public void selectMove(){
+	public static  void selectMove(){
 		System.out.println("What territory would you like to invade? Ex: A1");
 		Scanner userInput = new Scanner(System.in);
 		move = userInput.nextLine();
@@ -102,7 +102,7 @@ public class PlayerMove {
 		checkIfValidRow();
 	}
 	
-	public void checkIfValidRow(){
+	public static void checkIfValidRow(){
 		
 		for(int i = 0; i < Territory.letters.size(); i++){
 			if(row2.equalsIgnoreCase(Territory.letters.get(i))){
@@ -127,7 +127,7 @@ public class PlayerMove {
 		
 	}
 	
-	public void checkIfValidColumn(){
+	public static void checkIfValidColumn(){
 
 		if((column2 > 0 && column2 < 7)){
 			checkIfValidMove();
@@ -135,7 +135,7 @@ public class PlayerMove {
 		
 	}
 	
-	public void checkIfValidMove(){
+	public static void checkIfValidMove(){
 		if((Math.abs(column2-column1) == 1 || Math.abs(column2-column1) == 0) || ((row2.equals(letterOption1))||(row2.equals(letterOption2)) || (row2.equals(letterOption3)))){
 			enterTerritory();
 		}
@@ -145,7 +145,7 @@ public class PlayerMove {
 		}
 	}	
 	
-	public void	enterTerritory(){
+	public static void	enterTerritory(){
 		for(int i = 0; i < 30; i++){
 			if(Territory.spaces.get(i).getNameOfSpace().equalsIgnoreCase(move)){
 				moveIndex = i;

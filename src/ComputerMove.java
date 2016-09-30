@@ -1,12 +1,12 @@
 import java.util.ArrayList;
 public class ComputerMove {
 	
-	ArrayList<String> computerTerritories = new ArrayList<String>();
-	int counter = 0;
-	int armies = 0;
-	boolean add = true;
+	static ArrayList<String> computerTerritories = new ArrayList<String>();
+	static int counter = 0;
+	static int armies = 0;
+	static boolean add = true;
 	
-	public void computerMove(){
+	public static void computerMove(){
 		System.out.println("It is the computer's move.");
 		if(Player.players.get(0).getName().getClass().equals(Player.name2)){
 			for(int i = 1; i < 5; i++){
